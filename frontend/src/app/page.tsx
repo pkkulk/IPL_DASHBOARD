@@ -1,4 +1,4 @@
-import Link from "next/link";
+
 import Hero from "@/components/Hero"
 import TopPlayers from "@/components/TopPlayers"
 import FeaturMatches from "@/components/FeaturedMatches"

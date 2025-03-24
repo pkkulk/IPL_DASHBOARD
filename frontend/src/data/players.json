@@ -1,0 +1,27 @@
+[
+    {
+      "name": "Virat Kohli",
+      "team": "RCB",
+      "role": "Batsman",
+      "matches": 250,
+      "runs": 7000,
+      "wickets": 0
+    },
+    {
+      "name": "MS Dhoni",
+      "team": "CSK",
+      "role": "Batsman",
+      "matches": 220,
+      "runs": 6000,
+      "wickets": 0
+    },
+    {
+      "name": "Jasprit Bumrah",
+      "team": "MI",
+      "role": "Bowler",
+      "matches": 150,
+      "runs": 0,
+      "wickets": 180
+    }
+  ]
+  

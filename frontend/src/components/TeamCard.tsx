@@ -1,5 +1,5 @@
 "use client"; // Add this if using Next.js App Router
-
+import Image from 'next/image';
 import React from "react";
 import Link from "next/link"; // ✅ Use next/link instead of react-router-dom
 
@@ -15,9 +15,8 @@ interface TeamCardProps {
 }
 
 const TeamCard: React.FC<TeamCardProps> = ({
-  id,
+
   name,
-  shortName,
   logo,
   primaryColor = "#000000", // Ensure default hex color
   secondaryColor = "#333333",
@@ -46,11 +45,16 @@ const TeamCard: React.FC<TeamCardProps> = ({
 
           {/* Team logo */}
           <div className="absolute inset-0 z-20 flex items-center justify-center p-6 transform group-hover:scale-110 transition-transform duration-300">
-            <img
-              src={logo || "/default-team-logo.png"} // ✅ Ensure fallback logo
-              alt={`${name} logo`}
-              className="max-h-28 max-w-full object-contain"
-            />
+          import Image from 'next/image';
+
+<Image
+  src={logo || 'https://via.placeholder.com/150'}
+  alt={`${name} logo`}
+  width={100} // Adjust width as needed
+  height={100} // Adjust height as needed
+  className="max-h-28 max-w-full object-contain"
+/>
+
           </div>
         </div>
 

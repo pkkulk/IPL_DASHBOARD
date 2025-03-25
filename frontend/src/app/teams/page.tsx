@@ -181,37 +181,35 @@ const Teams = () => {
       
       <main className="flex-grow section-container">
         {/* Key Team Stats */}
-        <div className="mb-12">
-          <div className="stats-grid">
-            <StatCard 
-              title="Most Titles" 
-              value="MI & CSK (5)" 
-              icon={<Trophy className="w-6 h-6 text-cricket-ball" />}
-              color="bg-gradient-to-br from-white to-cricket-ball/10"
-            />
-            <StatCard 
-              title="Highest Win Rate" 
-              value="64.5%" 
-              icon={<TrendingUp className="w-6 h-6 text-cricket-accent" />}
-              color="bg-gradient-to-br from-white to-cricket-accent/10"
-            />
-            <StatCard 
-              title="Most Matches" 
-              value="MI (248)" 
-              icon={<Calendar className="w-6 h-6 text-cricket-sky" />}
-              color="bg-gradient-to-br from-white to-cricket-sky/10"
-            />
-            <StatCard 
-              title="Total Teams" 
-              value="15" 
-              icon={<Trophy className="w-6 h-6 text-cricket-pitch" />}
-              color="bg-gradient-to-br from-white to-cricket-pitch/10"
-            />
-          </div>
-        </div>
+        <div className="mb-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+  <StatCard 
+    title="Most Titles" 
+    value="MI & CSK (5)" 
+    icon={<Trophy className="w-6 h-6 text-cricket-ball" />}
+    color="bg-gradient-to-br from-white to-cricket-ball/10"
+  />
+  <StatCard 
+    title="Highest Win Rate" 
+    value="64.5%" 
+    icon={<TrendingUp className="w-6 h-6 text-cricket-accent" />}
+    color="bg-gradient-to-br from-white to-cricket-accent/10"
+  />
+  <StatCard 
+    title="Most Matches" 
+    value="MI (248)" 
+    icon={<Calendar className="w-6 h-6 text-cricket-sky" />}
+    color="bg-gradient-to-br from-white to-cricket-sky/10"
+  />
+  <StatCard 
+    title="Total Teams" 
+    value="15" 
+    icon={<Trophy className="w-6 h-6 text-cricket-pitch" />}
+    color="bg-gradient-to-br from-white to-cricket-pitch/10"
+  />
+</div>
         
         {/* Search & Filter */}
-        <div className="mb-8 relative">
+        <div className="m-5 relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Search className="h-5 w-5 text-gray-400" />
           </div>
@@ -223,9 +221,9 @@ const Teams = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        
+        <div className='rounded-2xl shadow-lg'>
         {/* Teams Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-fade-in">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-fade-in m-5 ">
           {filteredTeams.map((team) => (
             <TeamCard key={team.id} {...team} />
           ))}
@@ -237,6 +235,7 @@ const Teams = () => {
 </p>
    </div>
           )}
+        </div>
         </div>
       </main>
       

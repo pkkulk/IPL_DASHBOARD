@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 
@@ -16,6 +17,7 @@ const playersMockData = [
     runs: 7263,
     wickets: 4,
     image: "https://via.placeholder.com/150/EC1C24/FFFFFF?text=VK",
+    color: "#EC1C24",
   },
   {
     id: 2,
@@ -26,6 +28,7 @@ const playersMockData = [
     runs: 4978,
     wickets: 0,
     image: "https://via.placeholder.com/150/FDB913/FFFFFF?text=MSD",
+    color: "#FDB913",
   },
   {
     id: 3,
@@ -36,6 +39,7 @@ const playersMockData = [
     runs: 6211,
     wickets: 15,
     image: "https://via.placeholder.com/150/0078BC/FFFFFF?text=RS",
+    color: "#0078BC",
   },
 ];
 
@@ -75,44 +79,49 @@ const Players = () => {
         {/* Players Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in m-5">
           {filteredPlayers.map((player) => (
-            <div
-              key={player.id}
-              className="bg-white rounded-3xl shadow-lg overflow-hidden group transition-transform transform hover:scale-105 hover:shadow-xl"
-            >
-              {/* Player Image */}
-              <div className="relative h-48 overflow-hidden">
-                <Image
-                  src={player.image}
-                  alt={player.name}
-                  width={150}
-                  height={150}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform"
-                />
-              </div>
+            <Link key={player.id} href={`/players/${player.id}`} passHref>
+              <div
+                className="rounded-3xl shadow-lg overflow-hidden group transition-transform transform hover:scale-105 hover:shadow-xl cursor-pointer"
+                style={{
+                  backgroundColor: player.color,
+                  border: `4px solid ${player.color}`,
+                  color: "white",
+                }}
+              >
+                {/* Player Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src={player.image}
+                    alt={player.name}
+                    width={150}
+                    height={150}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                  />
+                </div>
 
-              {/* Player Info */}
-              <div className="p-5 text-center">
-                <h3 className="text-lg font-semibold mb-2">{player.name}</h3>
-                <p className="text-gray-500 text-sm">{player.role} - {player.team}</p>
-                <div className="grid grid-cols-2 gap-4 mt-3">
-                  <div>
-                    <p className="text-gray-500 text-sm">Runs</p>
-                    <p className="text-xl font-bold">{player.runs}</p>
-                  </div>
-                  <div>
-                    <p className="text-gray-500 text-sm">Wickets</p>
-                    <p className="text-xl font-bold">{player.wickets}</p>
+                {/* Player Info */}
+                <div className="p-5 text-center">
+                  <h3 className="text-lg font-semibold mb-2">{player.name}</h3>
+                  <p className="text-sm">{player.role} - {player.team}</p>
+                  <div className="grid grid-cols-2 gap-4 mt-3">
+                    <div>
+                      <p className="text-sm">Runs</p>
+                      <p className="text-xl font-bold">{player.runs}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm">Wickets</p>
+                      <p className="text-xl font-bold">{player.wickets}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
           {filteredPlayers.length === 0 && (
             <div className="col-span-full text-center py-12">
               <p className="text-xl text-gray-500">
-  No players found matching &quot;{searchTerm}&quot;
-</p>
-
+                No players found matching &quot;{searchTerm}&quot;
+              </p>
             </div>
           )}
         </div>

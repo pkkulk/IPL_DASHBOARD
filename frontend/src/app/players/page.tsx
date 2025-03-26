@@ -110,8 +110,9 @@ const Players = () => {
           {filteredPlayers.length === 0 && (
             <div className="col-span-full text-center py-12">
               <p className="text-xl text-gray-500">
-                No players found matching "{searchTerm}"
-              </p>
+  No players found matching &quot;{searchTerm}&quot;
+</p>
+
             </div>
           )}
         </div>

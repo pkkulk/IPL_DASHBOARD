@@ -221,9 +221,9 @@ const Teams = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <div className='rounded-2xl shadow-lg'>
+        <div className='rounded-4xl shadow-lg'>
         {/* Teams Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-fade-in m-5 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-fade-in m-5 rounded-full">
           {filteredTeams.map((team) => (
             <TeamCard key={team.id} {...team} />
           ))}

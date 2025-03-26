@@ -1,7 +1,6 @@
-"use client";
 import Image from "next/image";
 import React from "react";
-import Link from "next/link"; // ✅ Use next/link for navigation
+import Link from "next/link";
 
 interface TeamCardProps {
   id: number;
@@ -15,6 +14,7 @@ interface TeamCardProps {
 }
 
 const TeamCard: React.FC<TeamCardProps> = ({
+  id, // ✅ Add id to link correctly
   name,
   logo,
   primaryColor = "#000000",
@@ -22,7 +22,6 @@ const TeamCard: React.FC<TeamCardProps> = ({
   titles,
   matches,
 }) => {
-  // Convert hex color to rgba for gradient overlay
   const getRgba = (hex: string, alpha: number) => {
     if (!/^#[0-9A-F]{6}$/i.test(hex)) return `rgba(0, 0, 0, ${alpha})`;
     const r = parseInt(hex.slice(1, 3), 16);
@@ -32,20 +31,14 @@ const TeamCard: React.FC<TeamCardProps> = ({
   };
 
   const gradientStyle = {
-    background: `linear-gradient(to bottom right, ${getRgba(
-      primaryColor,
-      0.9
-    )}, ${getRgba(secondaryColor, 0.9)})`,
+    background: `linear-gradient(to bottom right, ${getRgba(primaryColor, 0.9)}, ${getRgba(secondaryColor, 0.9)})`,
   };
 
   return (
-    <Link href="/teams" className="block">
+    <Link href={`/teams/${id}`} className="block"> {/* ✅ Correct Link */}
       <div className="group rounded-3xl overflow-hidden shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl">
         <div className="relative h-48">
-          {/* Background Gradient */}
           <div style={gradientStyle} className="absolute inset-0"></div>
-
-          {/* Team Logo */}
           <div className="absolute inset-0 flex items-center justify-center p-6 transform transition-all group-hover:scale-110">
             <Image
               src={logo || "/default-team-logo.png"}
@@ -57,11 +50,8 @@ const TeamCard: React.FC<TeamCardProps> = ({
             />
           </div>
         </div>
-
-        {/* Card Content */}
         <div className="p-5 bg-white rounded-b-3xl text-center">
           <h3 className="text-lg font-semibold">{name}</h3>
-
           <div className="grid grid-cols-2 gap-4 mt-3">
             <div>
               <p className="text-gray-500 text-sm">Titles</p>

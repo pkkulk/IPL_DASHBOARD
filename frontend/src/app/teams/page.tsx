@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import TeamCard from "@/components/TeamCard";
 import StatCard from "@/components/StatCard";
@@ -6,9 +7,21 @@ import { Input } from "@/components/ui/input";
 import { Search, TrendingUp, Trophy, Calendar } from "lucide-react";
 import teamsMockData from "@/data/teamsMockData"; // Importing the existing team data
 
+// Define Type for Team
+interface Team {
+  id: number;
+  name: string;
+  shortName: string;
+  logo: string;
+  primaryColor: string;
+  secondaryColor: string;
+  titles: number;
+  matches: number;
+}
+
 const Teams = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [teams, setTeams] = useState([]);
+  const [teams, setTeams] = useState<Team[]>([]); // ✅ Explicitly typed state
 
   useEffect(() => {
     // Fetching from the local file (Mock API simulation)
@@ -28,8 +41,7 @@ const Teams = () => {
         <div className="section-container py-8">
           <h1 className="heading-primary text-center mb-4">IPL Teams</h1>
           <p className="text-center text-gray-600 max-w-3xl mx-auto mb-8">
-            Explore the franchises that have shaped the Indian Premier League
-            since its inception in 2008.
+            Explore the franchises that have shaped the Indian Premier League since its inception in 2008.
           </p>
         </div>
       </div>
@@ -37,30 +49,10 @@ const Teams = () => {
       <main className="flex-grow section-container">
         {/* Key Team Stats */}
         <div className="mb-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <StatCard
-            title="Most Titles"
-            value="MI & CSK (5)"
-            icon={<Trophy className="w-6 h-6 text-cricket-ball" />}
-            color="bg-gradient-to-br from-white to-cricket-ball/10"
-          />
-          <StatCard
-            title="Highest Win Rate"
-            value="64.5%"
-            icon={<TrendingUp className="w-6 h-6 text-cricket-accent" />}
-            color="bg-gradient-to-br from-white to-cricket-accent/10"
-          />
-          <StatCard
-            title="Most Matches"
-            value="MI (248)"
-            icon={<Calendar className="w-6 h-6 text-cricket-sky" />}
-            color="bg-gradient-to-br from-white to-cricket-sky/10"
-          />
-          <StatCard
-            title="Total Teams"
-            value={teams.length}
-            icon={<Trophy className="w-6 h-6 text-cricket-pitch" />}
-            color="bg-gradient-to-br from-white to-cricket-pitch/10"
-          />
+          <StatCard title="Most Titles" value="MI & CSK (5)" icon={<Trophy className="w-6 h-6 text-cricket-ball" />} />
+          <StatCard title="Highest Win Rate" value="64.5%" icon={<TrendingUp className="w-6 h-6 text-cricket-accent" />} />
+          <StatCard title="Most Matches" value="MI (248)" icon={<Calendar className="w-6 h-6 text-cricket-sky" />} />
+          <StatCard title="Total Teams" value={teams.length.toString()} icon={<Trophy className="w-6 h-6 text-cricket-pitch" />} />
         </div>
 
         {/* Search & Filter */}

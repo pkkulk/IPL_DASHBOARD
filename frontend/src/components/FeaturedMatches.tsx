@@ -20,44 +20,44 @@ const FeaturedMatches: React.FC = () => {
   const [matches, setMatches] = useState<Match[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  useEffect(() => {
-    const fetchMatches = async () => {
-      try {
-        const apiKey = "bdd1446d-bf33-4fe5-8117-456f88b17638"; // Insecure!
-        const response = await axios.get(`https://api.cricapi.com/v1/currentMatches?apikey=${apiKey}`);
-        const rawData = response.data; // <-- Store raw data here
-        console.log("📡 Raw Data Fetched from External API (with key):", rawData);
-         setMatches(rawData);
-         setLoading(false);
-        // Optional: show somewhere on screen
-        alert("Data fetched! Check console.");
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError('Failed to fetch matches');
-        }
-      }
-      
-    };
-  
-    fetchMatches();
-  }, []);
-  
   // useEffect(() => {
   //   const fetchMatches = async () => {
   //     try {
-  //       const response = await axios.get('http://localhost:5000/api/featured-matches');
-  //       setMatches(response.data.matches);
-  //       setLoading(false);
-  //     } catch (err: any) {
-  //       setError(err.message || 'Failed to fetch matches');
-  //       setLoading(false);
+  //       const apiKey = "bdd1446d-bf33-4fe5-8117-456f88b17638"; // Insecure!
+  //       const response = await axios.get(`https://api.cricapi.com/v1/currentMatches?apikey=${apiKey}`);
+  //       const rawData = response.data; // <-- Store raw data here
+  //       console.log("📡 Raw Data Fetched from External API (with key):", rawData);
+  //        setMatches(rawData);
+  //        setLoading(false);
+  //       // Optional: show somewhere on screen
+  //       alert("Data fetched! Check console.");
+  //     } catch (err) {
+  //       if (err instanceof Error) {
+  //         setError(err.message);
+  //       } else {
+  //         setError('Failed to fetch matches');
+  //       }
   //     }
+      
   //   };
-
+  
   //   fetchMatches();
   // }, []);
+  
+  useEffect(() => {
+    const fetchMatches = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/featured-matches');
+        setMatches(response.data.matches);
+        setLoading(false);
+      } catch (err: any) {
+        setError(err.message || 'Failed to fetch matches');
+        setLoading(false);
+      }
+    };
+
+    fetchMatches();
+  }, []);
   if (loading) return <div className="text-center mt-10 text-blue-500">Loading featured matches...</div>;
   if (error) return <div className="text-center mt-10 text-red-500">Error: {error}</div>;
 

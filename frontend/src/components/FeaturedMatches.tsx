@@ -50,8 +50,19 @@ const FeaturedMatches: React.FC = () => {
         const response = await axios.get('http://localhost:5000/api/featured-matches');
         setMatches(response.data.matches);
         setLoading(false);
-      } catch (err: any) {
-        setError(err.message || 'Failed to fetch matches');
+      } catch (err: unknown) { // Type 'err' as unknown
+        let errorMessage = 'Failed to fetch matches'; // Default message
+      
+        // Type Guard: Check if 'err' is actually an Error object
+        if (err instanceof Error) {
+          errorMessage = err.message; // Safely access the message property
+        }
+        // Optional: Handle other types or string errors if necessary
+        // else if (typeof err === 'string') {
+        //   errorMessage = err;
+        // }
+      
+        setError(errorMessage);
         setLoading(false);
       }
     };

@@ -27,13 +27,18 @@ const FeaturedMatches: React.FC = () => {
         const response = await axios.get(`https://api.cricapi.com/v1/currentMatches?apikey=${apiKey}`);
         const rawData = response.data; // <-- Store raw data here
         console.log("📡 Raw Data Fetched from External API (with key):", rawData);
-  
+         setMatches(rawData);
+         setLoading(false);
         // Optional: show somewhere on screen
         alert("Data fetched! Check console.");
-      } catch (err: any) {
-        setError(err.message || 'Failed to fetch matches');
-        setLoading(false);
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError('Failed to fetch matches');
+        }
       }
+      
     };
   
     fetchMatches();

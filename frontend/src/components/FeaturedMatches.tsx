@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import BASE_URL from './config';
 type Match = {
   id: string;
   name: string;
@@ -20,6 +20,8 @@ const FeaturedMatches: React.FC = () => {
   const [matches, setMatches] = useState<Match[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+ 
+
   // useEffect(() => {
   //   const fetchMatches = async () => {
   //     try {
@@ -47,7 +49,7 @@ const FeaturedMatches: React.FC = () => {
   useEffect(() => {
     const fetchMatches = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/featured-matches');
+        const response = await axios.get(`${BASE_URL}/api/featured-matches`);
         setMatches(response.data.matches);
         setLoading(false);
       } catch (err: unknown) { // Type 'err' as unknown
@@ -83,8 +85,8 @@ const FeaturedMatches: React.FC = () => {
           >
             <h3 className="text-xl font-semibold mb-2">{match.name}</h3>
             <div className="flex items-center justify-between">
-              {match.teamInfo.map((team, index) => (
-                <div key={index} className="flex flex-col items-center">
+            {match.teamInfo?.map((team, index) => (
+            <div key={index} className="flex flex-col items-center">
                   <img src={team.img} alt={team.name} className="w-12 h-12 object-contain" />
                   <span className="text-sm mt-1">{team.shortname}</span>
                 </div>

@@ -7,7 +7,19 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // --- Middleware ---
-app.use(cors());
+
+const allowedOrigins = [];
+
+if (process.env.NODE_ENV === 'production') {
+  allowedOrigins.push('https://ipl-dashboard-git-main-prathmesh-kulkarni-s-projects.vercel.app');
+} else {
+  allowedOrigins.push(process.env.CLIENT_URL || 'http://localhost:3000');
+}
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
 app.use(express.json());
 
 // --- Environment Variable Check ---

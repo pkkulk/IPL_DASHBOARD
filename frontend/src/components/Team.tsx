@@ -21,7 +21,7 @@ const Team = () => {
     </Link>
   </div>
 
-  <div className="flex flex-col items-center bg-gray-100 shadow-2xl p-4 rounded-lg  bg-white">
+  <div className="flex flex-col items-center  shadow-2xl p-4 rounded-lg  bg-white">
     <Link href="/teams" className="font-semibold hover:text-blue-500 text-center">
       <Image src="/RCB.jpeg" alt="Royal Challengers Bangalore" width={120} height={100} className="mb-2 h-24 w-32 lg:h-36 lg:w-44"/>
       Royal Challengers <br/>Bangalore

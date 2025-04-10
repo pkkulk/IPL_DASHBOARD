@@ -41,7 +41,7 @@ const TeamCard: React.FC<TeamCardProps> = ({
           <div style={gradientStyle} className="absolute inset-0"></div>
           <div className="absolute inset-0 flex items-center justify-center p-6 transform transition-all group-hover:scale-110">
             <Image
-              src={logo || "/default-team-logo.png"}
+              src={logo || "/MI.png"}
               alt={`${name} logo`}
               width={100}
               height={100}

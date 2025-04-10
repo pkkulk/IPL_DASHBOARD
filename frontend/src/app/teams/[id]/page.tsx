@@ -24,10 +24,10 @@ const TeamPage = () => {
         {/* Team Logo */}
         <div className="absolute -bottom-12 bg-white p-4 rounded-full shadow-lg">
           <Image
-            src={team.logo || "/default-team-logo.png"}
+            src={team.logo || "/MI.png"}
             alt={`${team.name} Logo`}
             width={100}
-            height={100}
+            height={150}
             className="object-contain drop-shadow-lg"
             unoptimized
           />
